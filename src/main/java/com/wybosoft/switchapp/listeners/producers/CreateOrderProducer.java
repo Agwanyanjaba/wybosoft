@@ -1,8 +1,6 @@
 package com.wybosoft.switchapp.listeners.producers;
 
-package coding.example.orderService.kafka;
-
-import coding.example.Order;
+import com.wybosoft.switchapp.models.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,11 +12,8 @@ import java.util.concurrent.ExecutionException;
 
 @Service
 public class CreateOrderProducer {
-
     private static final Logger log = LoggerFactory.getLogger(CreateOrderProducer.class);
-
     private final KafkaTemplate<String, Order> createOrderKafkaTemplate;
-
     private final String createOrderTopic;
 
     public CreateOrderProducer(KafkaTemplate<String, Order> createOrderKafkaTemplate,

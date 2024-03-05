@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class ProducerConfig {
+public class WybosoftKafkaProducerConfig {
 
     @Value("${spring.kafka.order.bootstrap-servers}")
     private String bootstrapServers;
