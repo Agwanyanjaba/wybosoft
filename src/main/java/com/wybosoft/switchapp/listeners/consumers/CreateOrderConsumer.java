@@ -16,7 +16,8 @@ public class CreateOrderConsumer {
 
     @KafkaListener(topics = "${spring.kafka.order.topic.create-order}", containerFactory="NotificationContainerFactory")
     public void createOrderListener(@Payload Order order, Acknowledgment ack) {
-        log.info("Notification service received order {} ", order);
+        log.info("Notification service received order {} with narration of {},  created at: {}",
+                order.getOrderID(), order.getContent(), order.getDateOfCreation() );
         ack.acknowledge();
     }
 }
