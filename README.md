@@ -1,4 +1,4 @@
-# Wybosoft Microsoervice
+# Wybosoft Microservice
 A CI/CD spring boot app for cloud technologies
 
 ## Technologies used include
