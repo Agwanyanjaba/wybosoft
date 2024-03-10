@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="create_house_table" author="wycliffe" runOnChange="true">
+            <preConditions onFail="MARK_RAN">
+                    <not>
+                            <tableExists tableName="house"/>
+                    </not>
+            </preConditions>
+        <createTable tableName="house">
+            <column name="id" type="bigint" autoIncrement="true" startWith="1">
+                <constraints primaryKey="true" primaryKeyName="house_id_pk"/>
+            </column>
+            <column name="owner" type="varchar(250)">
+            </column>
+            <column name="fully_paid" type="boolean" defaultValueBoolean="false"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="add_column_house_size" author="AHA">
+        <addColumn tableName="house">
+            <column name="house_size" type="bigint" defaultValue="0"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add_unique_constraint_v1" author="wycliffe">
+        <addUniqueConstraint constraintName="uk_owner_fully_paid_house_size"
+                             tableName="house"
+                             columnNames="owner, fully_paid, house_size"
+                             validate="true"
+        />
+            <createIndex tableName="house" indexName="idx_house_clustered" clustered="true">
+                    <column name="owner" />
+                    <column name="fully_paid" />
+                    <column name="house_size" />
+            </createIndex>
+    </changeSet>
+    <changeSet id="add_logical_operator_column" author="wycliffe" >
+        <preConditions onFail="MARK_RAN">
+            <not>
+            <columnExists tableName="house" columnName="logical_operator"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="house">
+            <column name="logical_operator" type="varchar(150)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+
+</databaseChangeLog>
