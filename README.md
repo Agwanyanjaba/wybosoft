@@ -1,4 +1,4 @@
-# Spring boot application
+# Wybosoft Microsoervice
 A CI/CD spring boot app for cloud technologies
 
 ## Technologies used include
@@ -7,5 +7,6 @@ A CI/CD spring boot app for cloud technologies
 - Github
 - Jenkins
 - Kubernetes
+- Kafka
 - ArgoCD
 - Prometheus
